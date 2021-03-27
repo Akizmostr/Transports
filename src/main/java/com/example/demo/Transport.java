@@ -5,17 +5,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import lombok.Data;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Data
-//@Entity
-
+@Entity
+@Table(name = "transports")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor
 public class Transport {
 
-//    @Id
+    @Id
     @JacksonXmlProperty(localName = "ObjectId")
     private String objectId;
 

@@ -34,7 +34,7 @@ public class TransportApplication {
     }
 
     @Bean
-    public CommandLineRunner run(RestTemplate restTemplate /*,TransportRepository repo*/) throws Exception {
+    public CommandLineRunner run(RestTemplate restTemplate ,TransportRepository repo) throws Exception {
         return args -> {
             ResponseEntity<String> response = restTemplate.getForEntity("https://avl2.telematika.lt/xml/p8tpzv3yqnza7pa28wx4p8rn2pyk3gwx.php", String.class);
 
@@ -43,10 +43,11 @@ public class TransportApplication {
             Transports transports = xmlMapper.readValue(xmlData, Transports.class);
 
             for (Transport transport: transports.getTransports()){
-                //repo.save(transport);
+                repo.save(transport);
                 log.info(transport.getNumber() + " " + transport.getX() + " " + transport.getY());
             }
 
+            log.info(repo.getCoordinatesByNumber("JFN 187"));
 
         };
     }
