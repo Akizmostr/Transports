@@ -49,6 +49,10 @@ public class TransportApplication {
 
             log.info(repo.getCoordinatesByNumber("JFN 187"));
 
+            for (String coord :
+                    repo.getAllCoordinates()) {
+                log.info(coord);
+            }
         };
     }
 }
